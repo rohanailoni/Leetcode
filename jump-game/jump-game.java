@@ -31,10 +31,24 @@ class Solution {
     
     
     public boolean canJump(int[] nums) {
+        if(nums.length==1)return true;
         num=nums;
         dp=new int[nums.length];
         Arrays.fill(dp,-1);
+        int reach=0;
+        for(int i=0;i<nums.length;i++){
+            
+            if(reach<i){
+                return false;
+            }
+            
+            reach=Math.max(reach,i+nums[i]);
+        }
+        if(reach>=nums.length-1){
+            return true;
+        }return false;
         
-        return dfs(0);
+        
+        
     }
 }
