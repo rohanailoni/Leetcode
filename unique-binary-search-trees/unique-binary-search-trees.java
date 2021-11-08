@@ -1,13 +1,32 @@
 class Solution {
-    public int numTrees(int n) {
-  int [] G = new int[n+1];
-  G[0] = G[1] = 1;
-    
-  for(int i=2; i<=n; ++i) {
-    for(int j=1; j<=i; ++j) {
-      G[i] += G[j-1] * G[i-j];
+    private int[] dp;
+    private int division(int n){
+        int sum=0;
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=n;j++){
+                if(i+j==n){
+                    //System.out.println(i+" "+j);
+                    sum+=dp[i]*dp[j];
+                }
+            }
+        }
+        return dp[n+1]=sum;
     }
-  }
-  return G[n];
-}
+    public int numTrees(int n) {
+        if(n==1){
+            return 1;
+        }if(n==2){
+            return 2;
+        }
+        dp=new int[n+1];
+        dp[0]=1;
+        dp[1]=1;
+        dp[2]=2;
+       
+        for(int i=3;i<=n;i++){
+            division(i-1);
+        }
+        
+        return dp[n];
+    }
 }
