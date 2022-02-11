@@ -1,21 +1,28 @@
-class Solution {
+public class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        int k=s1.length();
-        for(int i=0;i<s2.length()-k+1;i++){
-            String temp=s2.substring(i,i+k);
-            if(isPermutation(s1,temp)){
-                return true;
-            }
+        int len1 = s1.length(), len2 = s2.length();
+        if (len1 > len2) return false;
+        
+        int[] count = new int[26];
+        for (int i = 0; i < len1; i++) {
+            count[s1.charAt(i) - 'a']++;
+            count[s2.charAt(i) - 'a']--;
         }
+        if (allZero(count)) return true;
+        System.out.println(Arrays.toString(count));
+        for (int i = len1; i < len2; i++) {
+            count[s2.charAt(i) - 'a']--;
+            count[s2.charAt(i - len1) - 'a']++;
+            if (allZero(count)) return true;
+        }
+        
         return false;
     }
-    public  boolean isPermutation(String s1, String s2) {
-        int[] frequencyOfS1 = new int[26];
-        int[] frequencyOfS2 = new int[26];
-        for (int i = 0; i < s1.length(); i++) {
-            frequencyOfS1[s1.charAt(i) - 'a']++;
-            frequencyOfS2[s2.charAt(i) - 'a']++;
+    
+    private boolean allZero(int[] count) {
+        for (int i = 0; i < 26; i++) {
+            if (count[i] != 0) return false;
         }
-        return Arrays.equals(frequencyOfS1, frequencyOfS2);
+        return true;
     }
 }
