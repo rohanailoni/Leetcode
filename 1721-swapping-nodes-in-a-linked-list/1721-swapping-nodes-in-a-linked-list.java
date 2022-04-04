@@ -22,10 +22,10 @@ class Solution {
             return head;
         }
         temp=head;
-        int end=len-k;
+        //int end=len-k;
         ListNode mid=null;
         int c=0;
-        System.out.println(len);
+        //System.out.println(len);
         while(temp!=null){
             if(c==k-1){
                 if(mid==null)mid=temp;
@@ -36,7 +36,7 @@ class Solution {
                 }
                 
             }
-            if(c==end){
+            if(c==len-k){
                 if(mid==null){
                     mid=temp;
                 }
