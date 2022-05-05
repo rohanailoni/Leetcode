@@ -7,10 +7,10 @@ class node{
     }
 }
 class queue{
-    node head,tail;
+    node head;
     queue(){
         head=null;
-        tail=null;
+        
     }
     void push(int x){
         if(head==null){
