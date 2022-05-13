@@ -1,9 +1,39 @@
+// class queue<T>{
+    
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution {
     public Node connect(Node root) {
         if(root==null){
             return root;
         }
-        Queue<Node>qu=new LinkedList<>();
+        Queue<Node>qu=new ArrayDeque<>();
         qu.add(root);
         
         while(!qu.isEmpty()){
