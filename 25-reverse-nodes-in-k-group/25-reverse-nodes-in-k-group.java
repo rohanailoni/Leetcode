@@ -27,7 +27,7 @@ class Solution {
             
             if(count==k){
                 reverse(arr,k);
-                System.out.println(Arrays.toString(arr));
+                //System.out.println(Arrays.toString(arr));
                 
                 int i=0;
                 while(i<k){
