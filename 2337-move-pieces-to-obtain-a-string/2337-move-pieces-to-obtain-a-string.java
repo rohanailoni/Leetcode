@@ -14,7 +14,7 @@ class Solution {
                 return false;
             }else if (i < n && j < n) {
                 char c = start.charAt(i), d = target.charAt(j); 
-                if (c != d || c == 'L' && i < j || c == 'R' && i > j) {
+                if (c != d || (c == 'L' && i < j) || (c == 'R' && i > j)) {
                     return false;
                 }
             }
