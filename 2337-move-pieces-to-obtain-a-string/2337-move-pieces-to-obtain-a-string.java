@@ -13,8 +13,8 @@ class Solution {
             if ((i < n) != (j < n)) {
                 return false;
             }else if (i < n && j < n) {
-                char c = start.charAt(i), d = target.charAt(j); 
-                if (c != d || (c == 'L' && i < j) || (c == 'R' && i > j)) {
+               
+                if (start.charAt(i) != target.charAt(j) || (start.charAt(i) == 'L' && i < j) || (start.charAt(i) == 'R' && i > j)) {
                     return false;
                 }
             }
