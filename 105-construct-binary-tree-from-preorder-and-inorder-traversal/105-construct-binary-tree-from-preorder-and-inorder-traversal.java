@@ -27,20 +27,20 @@ class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         Queue<Integer> q= new LinkedList<>();
         for(int i:preorder)q.add(i);
-        return Tree(preorder,inorder,0,q);
+        return Tree(preorder,inorder,q);
     }
-    public TreeNode Tree(int[] pre,int[] in,int index,Queue q){
+    public TreeNode Tree(int[] pre,int[] in,Queue q){
         
         if (in.length>0){
             int root_index=index_finder(in,(int)q.remove());
             TreeNode root=new TreeNode(in[root_index],null,null);
-            //System.out.println(index+" "+pre[index]);
+           
             
             
-            int[] left_tree=Arrays.copyOfRange(in,0, root_index);
-            int[] right_tree=Arrays.copyOfRange(in, root_index+1,in.length);
-            root.left=Tree(pre,left_tree,index++,q);
-            root.right=Tree(pre,right_tree,index++,q);
+            
+            
+            root.left=Tree(pre,Arrays.copyOfRange(in,0, root_index),q);
+            root.right=Tree(pre,Arrays.copyOfRange(in, root_index+1,in.length),q);
             return root;
         }
         return null;
