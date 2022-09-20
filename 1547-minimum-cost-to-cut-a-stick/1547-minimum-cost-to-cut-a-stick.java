@@ -48,6 +48,7 @@
 class Solution {
     int cost;
     public int minCost(int n, int[] cuts) {
+        Arrays.sort(cuts);
         return dfs(0,n,new HashMap<>(),cuts);
     }
     public int dfs(int l,int r,HashMap<String,Integer>cache,int[] cuts){
