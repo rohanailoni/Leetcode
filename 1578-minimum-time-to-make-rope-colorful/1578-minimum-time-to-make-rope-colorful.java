@@ -12,26 +12,21 @@ class Solution {
                 int min=Integer.MAX_VALUE;
                 int co=0;
                 List<Integer>cache=new ArrayList<>();
+                int max=Integer.MIN_VALUE;
+                int temp=0;
                 for(int j=i;j<n;j++){
                     if(colors.charAt(i)!=colors.charAt(j)){
                         break;
                     }else{
-                        cache.add(neededTime[j]);
-                        min=Math.min(neededTime[j],min);
+                        temp+=neededTime[j];
+                        max=Math.max(neededTime[j],max);
                         co+=1;
                     }
                 }
-                Collections.sort(cache);
-                //System.out.println(cache+" "+co);
+                //System.out.println(temp+" "+max);
+               
+                if(co>1)ans+=(temp-max);
                 i+=co;
-                if(co<=1){
-                    continue;
-                }
-                for(int j=0;j<co-1;j++){
-                    ans+=cache.get(j);
-                }
-                //System.out.println(co);
-                //if(min!=Integer.MAX_VALUE && co>1)ans+=min;
                 
             }
             
