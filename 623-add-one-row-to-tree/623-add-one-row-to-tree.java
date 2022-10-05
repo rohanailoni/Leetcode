@@ -25,20 +25,19 @@ class Solution {
         qu.add(new Node(root,1));
         while(qu.size()!=0){
             if(qu.peek().depth==depth-1){
-                List<Node>arr=new ArrayList<>();
+                
                 while(qu.size()!=0 && qu.peek().depth==depth-1){
-                    arr.add(qu.remove());
-                }
-                for(int i=0;i<arr.size();i++){
-                    TreeNode left=arr.get(i).n.left;
-                    TreeNode right=arr.get(i).n.right;
+                    Node xxx=qu.remove();
+                    TreeNode left=xxx.n.left;
+                    TreeNode right=xxx.n.right;
                     TreeNode nnll=new TreeNode(val);
                     TreeNode nnrr=new TreeNode(val);
-                    arr.get(i).n.left=nnll;
-                    arr.get(i).n.right=nnrr;
+                    xxx.n.left=nnll;
+                    xxx.n.right=nnrr;
                     nnll.left=left;
                     nnrr.right=right;
                 }
+                
                 break;
             }
             Node nn=qu.remove();
