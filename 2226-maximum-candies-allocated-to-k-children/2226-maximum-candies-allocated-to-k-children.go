@@ -3,9 +3,9 @@ func maximumCandies(candies []int, k int64) int {
     s:=sum(candies);
     req:=int(math.Ceil(float64(s)/float64(k)));
     low:=1;
-    high:=req;
+    high:=req+1;
     ans:=int64(0)
-    for low<=high{
+    for low<high{
         mid:= (high+low)/2;
         got:=calc(mid,candies,n);
         //fmt.Println(low,high,mid,ans)
@@ -13,7 +13,7 @@ func maximumCandies(candies []int, k int64) int {
             ans=int64(mid);
             low=mid+1;
         }else{
-            high=mid-1;
+            high=mid;
         }
     }
     return int(ans);   
