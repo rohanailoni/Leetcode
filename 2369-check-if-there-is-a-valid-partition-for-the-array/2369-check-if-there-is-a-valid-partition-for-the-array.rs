@@ -33,10 +33,25 @@ impl Solution {
     }
     pub fn valid_partition(nums: Vec<i32>) -> bool {
         let n:usize=nums.len();
-        let mut dp:Vec<i32>=vec![-1;n];
+        let mut dp:Vec<bool>=vec![false;n+1];
         if n==2{
             return nums[0]==nums[1];
         }
-        return Self::solve(&nums,&mut dp,0);
+        dp[0]=true;
+        for i in 1..=n-1{
+            let mut j=i+1;
+            
+            if i>0 && nums[i]==nums[i-1]{
+                dp[j]=dp[j] | dp[j-2];
+            }
+            if i>1 && nums[i]==nums[i-1] && nums[i]==nums[i-2]{
+                dp[j]=dp[j] | dp[j-3];
+            }
+            if i>1 && nums[i]==nums[i-1]+1 && nums[i]==nums[i-2]+2{
+                dp[j]=dp[j] | dp[j-3];
+            }
+        }
+        return dp[n]
+        //return Self::solve(&nums,&mut dp,0);
     }
 }
