@@ -3,13 +3,10 @@ impl Solution {
         let n=c.len();
         let mut high:i32=(n-1) as i32;
         let mut low:i32=0;
-        let mut ans:i32=1;
         while low<=high{
              let mid = (high + low) / 2;
              let x:usize=mid as usize;
-             let diff:i32=high-mid+1;
             if mid+c[x]>=(n as i32){
-                ans=c[x];
                 high=mid-1;
             }else{
                 low=mid+1;
