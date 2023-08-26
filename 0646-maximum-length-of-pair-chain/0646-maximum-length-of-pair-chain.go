@@ -31,6 +31,10 @@ func findLongestChain(pairs [][]int) int {
             }
         }
     }
+    ans := 0
+    for _, val := range dp {
+        ans = max(ans, val)
+    }
     return dp[n-1];
 }
 
