@@ -1,35 +1,42 @@
 type UnionFind struct {
     parent []int
+    rank   []int
 }
 
 func newUnionFind(n int) *UnionFind {
     uf := &UnionFind{
         parent: make([]int, n),
+        rank:   make([]int, n),
     }
     for i := 0; i < n; i++ {
         uf.parent[i] = i
+        uf.rank[i] = 0
     }
     return uf
 }
+
 func (uf *UnionFind) find(x int) int {
     if uf.parent[x] != x {
         uf.parent[x] = uf.find(uf.parent[x])
     }
     return uf.parent[x]
 }
+
 func (uf *UnionFind) union(x, y int) {
     rootX := uf.find(x)
     rootY := uf.find(y)
+
     if rootX != rootY {
-        uf.parent[rootX] = rootY
+        if uf.rank[rootX] < uf.rank[rootY] {
+            rootX, rootY = rootY, rootX
+        }
+        uf.parent[rootY] = rootX
+        if uf.rank[rootX] == uf.rank[rootY] {
+            uf.rank[rootX]++
+        }
     }
 }
-func abs(x int) int {
-    if x < 0 {
-        return -x
-    }
-    return x
-}
+
 func minCostConnectPoints(points [][]int) int {
     manhattanDistance := func(p1, p2 []int) int {
         return abs(p1[0]-p2[0]) + abs(p1[1]-p2[1])
@@ -65,4 +72,11 @@ func minCostConnectPoints(points [][]int) int {
     }
 
     return minCost
+}
+
+func abs(x int) int {
+    if x < 0 {
+        return -x
+    }
+    return x
 }
